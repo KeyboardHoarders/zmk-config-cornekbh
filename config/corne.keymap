@@ -88,22 +88,50 @@
         print_mac: print_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_COMMAND &kp LEFT_SHIFT &kp NUMBER_4>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND &kp LEFT_SHIFT &kp NUMBER_4>,
+                <&macro_release>;
+
             label = "PRINT_MAC";
         };
 
         rec_mac: rec_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_COMMAND &kp LEFT_SHIFT &kp N5>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND &kp LEFT_SHIFT &kp N5>,
+                <&macro_release>;
+
             label = "REC_MAC";
         };
 
         lock_mac: lock_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_COMMAND &kp LEFT_CONTROL &kp Q>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND &kp LEFT_CONTROL &kp Q>,
+                <&macro_release>;
+
             label = "LOCK_MAC";
+        };
+
+        ctrl_c: ctrl_c {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press>, <&kp LCTRL &kp C>, <&macro_release>;
+
+            label = "CTRL_C";
+        };
+
+        ctrl_v: ctrl_v {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press>, <&kp LCTRL &kp V>, <&macro_release>;
+
+            label = "CTRL_V";
         };
     };
 
@@ -112,12 +140,12 @@
 
         escape {
             bindings = <&kp ESCAPE>;
-            key-positions = <13 29>;
+            key-positions = <0 1>;
         };
 
         delete {
             bindings = <&kp DELETE>;
-            key-positions = <15 21>;
+            key-positions = <10 11>;
         };
 
         perc {
@@ -209,6 +237,16 @@
             key-positions = <20 21>;
             layers = <0>;
         };
+
+        ctrl-c {
+            bindings = <&ctrl_c>;
+            key-positions = <26 27>;
+        };
+
+        ctrl-v {
+            bindings = <&ctrl_v>;
+            key-positions = <27 28>;
+        };
     };
 
     //
@@ -287,7 +325,7 @@
             >;
         };
 
-        fn_keys {
+        FNKEY {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans    &kp F9  &kp F10  &kp F11  &kp F12  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans    &kp F5  &kp F6   &kp F7   &kp F8   &trans  &trans
@@ -296,16 +334,16 @@
             >;
         };
 
-        media {
+        MED {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp C_VOLUME_DOWN        &kp C_MUTE        &kp C_VOL_UP     &kp C_BRI_DN  &kp C_BRI_UP
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &hm C_REWIND C_PREVIOUS  &kp K_PLAY_PAUSE  &hm C_FF C_NEXT  &trans        &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                   &trans            &trans           &trans        &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp C_VOLUME_DOWN        &kp C_MUTE  &kp C_VOL_UP     &kp C_BRI_DN  &kp C_BRI_UP
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &hm C_REWIND C_PREVIOUS  &kp C_PP    &hm C_FF C_NEXT  &trans        &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                   &trans      &trans           &trans        &trans
                         &trans  &trans  &trans    &trans  &trans                   &trans
             >;
         };
 
-        macros {
+        MAC {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans    &seq_1  &seq_2  &seq_3  &trans  &rec_mac  &print_mac
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans    &trans
