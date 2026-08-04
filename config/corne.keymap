@@ -64,6 +64,47 @@
                 <&kp LCTRL>;
         };
 
+        seq_1: seq_1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp N2 &kp N0 &kp N2 &kp N8 &kp N2 &kp N9 &kp LS(B) &kp R &kp U &kp N &kp I &kp N &kp H &kp O &kp N0 &kp N5 &kp ENTER>;
+            label = "SEQ_1";
+        };
+
+        seq_2: seq_2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp N2 &kp N0 &kp N2 &kp N8 &kp N2 &kp N9 &kp LS(G) &kp A &kp E &kp L &kp N0 &kp N5 &kp ENTER>;
+            label = "SEQ_2";
+        };
+
+        seq_3: seq_3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp N2 &kp N6 &kp N0 &kp N5 &kp LS(G) &kp A &kp E &kp L &kp N2 &kp N7 &kp N0 &kp N4 &kp LS(L) &kp I &kp Z &kp STAR &kp ENTER>;
+            label = "SEQ_3";
+        };
+
+        print_mac: print_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_COMMAND &kp LEFT_SHIFT &kp NUMBER_4>;
+            label = "PRINT_MAC";
+        };
+
+        rec_mac: rec_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_COMMAND &kp LEFT_SHIFT &kp N5>;
+            label = "REC_MAC";
+        };
+
+        lock_mac: lock_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_COMMAND &kp LEFT_CONTROL &kp Q>;
+            label = "LOCK_MAC";
+        };
     };
 
     combos {
@@ -185,10 +226,10 @@
             // | GUI | CTRL | SHFT | LWR | SPC |   | ENT | RSE  | BKSP | ALT | ESC |
 
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T        &kp Y    &kp U      &kp I          &kp O    &kp P     &kp BACKSPACE
-&kp LSHFT  &kp A  &kp S  &kp D     &kp F  &kp G        &kp H    &kp J      &kp K          &kp L    &kp SEMI  &kp SQT
-&kp LCTRL  &kp Z  &kp X  &kp C     &kp V  &kp B        &kp N    &kp M      &kp COMMA      &kp DOT  &kp FSLH  &mo 4
-                         &kp LGUI  &mo 1  &kp SPACE    &kp RET  &lt 2 TAB  &kp LEFT_ALT
+&kp TAB    &kp Q  &kp W    &kp E     &kp R    &kp T        &kp Y    &kp U      &kp I         &kp O    &kp P     &kp BACKSPACE
+&kp LSHFT  &kp A  &lt 7 S  &lt 6 D   &lt 5 F  &kp G        &kp H    &kp J      &kp K         &kp L    &kp SEMI  &kp SQT
+&kp LCTRL  &kp Z  &kp X    &kp C     &kp V    &kp B        &kp N    &kp M      &kp COMMA     &kp DOT  &kp FSLH  &mo 4
+                           &kp LGUI  &mo 1    &kp SPACE    &kp RET  &lt 2 TAB  &kp LEFT_ALT
             >;
         };
 
@@ -202,10 +243,10 @@
             // | GUI | CTRL | SHFT | LWR | SPC |   | ENT | RSE  | BKSP | ALT | ESC |
 
             bindings = <
-&trans  &kp N1  &kp N2    &kp N3       &kp N4           &kp N5           &kp N6   &kp N7        &kp N8        &kp N9        &kp N0  &trans
-&caps_word  &trans  &trans    &kp UP_ARROW  &browsertab      &kp PAGE_UP      &kp N0   &kp N4  &kp N5        &kp N6  &trans  &trans
-&trans  &trans  &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp PAGE_DOWN    &trans   &kp N1  &kp N2  &kp N3  &trans  &trans
-                          &kp LGUI      &trans           &kp SPACE        &kp RET  &mo 3        &trans
+&trans      &kp N1  &kp N2    &kp N3        &kp N4           &kp N5           &kp N6   &kp N7  &kp N8  &kp N9  &kp N0    &trans
+&caps_word  &trans  &trans    &kp UP_ARROW  &browsertab      &kp PAGE_UP      &kp N0   &kp N4  &kp N5  &kp N6  &trans    &trans
+&trans      &trans  &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp PAGE_DOWN    &trans   &kp N1  &kp N2  &kp N3  &kp HOME  &kp END
+                              &kp LGUI      &trans           &kp SPACE        &kp RET  &mo 3   &trans
             >;
         };
 
@@ -222,7 +263,7 @@
 &trans  &kp EXCL  &kp AT          &kp HASH        &kp DLLR         &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK  &kp LEFT_PARENTHESIS  &kp RPAR  &trans
 &trans  &trans    &trans          &kp UP_ARROW    &trans           &kp GRAVE    &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT              &kp BSLH  &trans
 &trans  &trans    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp TILDE    &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC              &kp PIPE  &trans
-                                  &kp LGUI        &mo 3           &kp SPACE    &kp RET    &trans     &trans
+                                  &kp LGUI        &mo 3            &kp SPACE    &kp RET    &trans     &trans
             >;
         };
 
@@ -230,21 +271,47 @@
             display-name = "System";
             bindings = <
 &trans  &kp F1        &kp F2        &kp F3        &kp F4      &kp F5            &kp F6  &kp F7  &kp F8  &kp F9  &kp F10      &trans
-&trans  &kp F11       &kp F12       &trans        &trans      &studio_unlock            &trans  &trans  &trans  &trans  &trans       &trans
+&trans  &kp F11       &kp F12       &trans        &trans      &studio_unlock    &trans  &trans  &trans  &trans  &trans       &trans
 &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_CLR  &bt BT_CLR_ALL    &trans  &trans  &trans  &trans  &bootloader  &trans
                                     &trans        &trans      &trans            &trans  &trans  &trans
             >;
         };
+
         EXTRA {
-                display-name = "Extra";
+            display-name = "Extra";
             bindings = <
-&trans  &trans       &trans         &trans          &trans      &msc SCRL_UP    &trans  &trans  &trans  &trans  &trans      &trans
-&trans  &trans       &trans        &mmv MOVE_UP      &trans   &msc SCRL_DOWN            &trans  &mkp LCLK  &mkp RCLK  &trans  &trans       &trans
-&trans  &trans       &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                                     &trans        &trans      &trans            &trans  &trans  &trans
+&trans  &trans  &trans          &trans          &trans           &msc SCRL_UP      &trans  &trans     &trans     &trans  &trans  &trans
+&trans  &trans  &trans          &mmv MOVE_UP    &trans           &msc SCRL_DOWN    &trans  &mkp LCLK  &mkp RCLK  &trans  &trans  &trans
+&trans  &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans            &trans  &trans     &trans     &trans  &trans  &trans
+                                &trans          &trans           &trans            &trans  &trans     &trans
+            >;
+        };
+
+        fn_keys {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &kp F9  &kp F10  &kp F11  &kp F12  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &kp F5  &kp F6   &kp F7   &kp F8   &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &kp F1  &kp F2   &kp F3   &kp F4   &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans   &trans
+            >;
+        };
+
+        media {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp C_VOLUME_DOWN        &kp C_MUTE        &kp C_VOL_UP     &kp C_BRI_DN  &kp C_BRI_UP
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &hm C_REWIND C_PREVIOUS  &kp K_PLAY_PAUSE  &hm C_FF C_NEXT  &trans        &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                   &trans            &trans           &trans        &trans
+                        &trans  &trans  &trans    &trans  &trans                   &trans
+            >;
+        };
+
+        macros {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &seq_1  &seq_2  &seq_3  &trans  &rec_mac  &print_mac
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans    &lock_mac
+                        &trans  &trans  &trans    &trans  &trans  &trans
             >;
         };
     };
-
 };
-    
