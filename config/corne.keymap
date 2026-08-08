@@ -57,10 +57,12 @@
         //   Linux:    &macro_tap &kp LS(LC(U))  ...  &macro_tap &kp SPACE
         //   macOS:    &macro_press &kp LALT  ...  &macro_release &kp LALT
         //   Win+:     &macro_tap &kp RALT &kp U  ...  &macro_tap &kp RET
+
         euro_sign: euro_sign {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&euro_sign_lower>, <&none>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
@@ -185,12 +187,19 @@
 
         // Euro sign macro: types U+20AC via Linux IBus sequence.
         // See euro_sign comment above for retargeting to macOS / Windows.
+
         euro_sign_lower: euro_sign_lower {
             compatible = "zmk,behavior-macro";
             wait-ms = <0>;
             tap-ms = <0>;
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp LS(LC(U))>, <&macro_tap &kp N2 &kp N0 &kp A &kp C>, <&macro_tap &kp SPACE>;
+            bindings =
+                <&macro_tap>,
+                <&kp LS(LC(U))>,
+                <&macro_tap>,
+                <&kp N2 &kp N0 &kp A &kp C>,
+                <&macro_tap>,
+                <&kp SPACE>;
         };
     };
 
@@ -316,6 +325,11 @@
             bindings = <&kp K_CUT>;
             key-positions = <25 26>;
         };
+
+        euro {
+            bindings = <&euro_sign>;
+            key-positions = <15 16>;
+        };
     };
 
     //
@@ -407,9 +421,9 @@
 
         MED {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp C_VOLUME_DOWN        &kp C_MUTE  &kp C_VOL_UP     &kp C_BRI_DN  &kp C_BRI_UP
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &hm C_REWIND C_PREVIOUS  &kp C_PP    &hm C_FF C_NEXT  &trans        &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                   &trans      &trans           &trans        &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp C_VOLUME_DOWN        &kp C_MUTE  &kp C_VOL_UP       &kp C_BRI_DN  &kp C_BRI_UP
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &hm C_REWIND C_PREVIOUS  &kp C_PP    &hm C_FF C_NEXT    &trans        &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp C_PREVIOUS           &trans      &kp LS(K_FORWARD)  &trans        &trans
                         &trans  &trans  &trans    &trans  &trans                   &trans
             >;
 
