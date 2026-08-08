@@ -50,13 +50,13 @@
             mods = <(MOD_LSFT)>;
         };
 
-        // Euro sign: types U+20AC via the Linux IBus sequence
-        // (Ctrl+Shift+U, then 20ac, then SPACE). mod-morph with `&none`
-        // on shift matches the original ZMK_UNICODE_SINGLE semantics.
+        // Euro sign: types U+20AC via WinCompose on Windows
+        // (RALT+U then 20ac then RET). mod-morph with `&none` on shift
+        // matches the original ZMK_UNICODE_SINGLE semantics.
         // Edit the `euro_sign_lower` macro below to retarget per OS:
+        //   Windows:  &macro_press &kp RALT &kp U RELEASE  ...  &macro_tap &kp RET
         //   Linux:    &macro_tap &kp LS(LC(U))  ...  &macro_tap &kp SPACE
         //   macOS:    &macro_press &kp LALT  ...  &macro_release &kp LALT
-        //   Win+:     &macro_tap &kp RALT &kp U  ...  &macro_tap &kp RET
 
         euro_sign: euro_sign {
             compatible = "zmk,behavior-mod-morph";
@@ -185,21 +185,31 @@
             label = "CMD_V";
         };
 
-        // Euro sign macro: types U+20AC via Linux IBus sequence.
-        // See euro_sign comment above for retargeting to macOS / Windows.
-
+        // Euro sign macro: types U+20AC via WinCompose on Windows.
+        // Press RALT+U, tap the hex digits, then send RET to commit.
+        // We use macro_press/macro_release explicitly (instead of macro_tap)
+        // so the RALT modifier is fully released BEFORE the digits are typed
+        // — otherwise the hex letters (a, c) get MS-Windows AltGr-shifted
+        // and the composer rejects the sequence.
         euro_sign_lower: euro_sign_lower {
             compatible = "zmk,behavior-macro";
-            wait-ms = <0>;
-            tap-ms = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
             #binding-cells = <0>;
             bindings =
+                <&macro_press>,
+                <&kp RALT>,
                 <&macro_tap>,
-                <&kp LS(LC(U))>,
+                <&kp U>,
+                <&macro_release>,
+                <&kp RALT>,
                 <&macro_tap>,
-                <&kp N2 &kp N0 &kp A &kp C>,
+                <&kp N2>,
+                <&kp N0>,
+                <&kp A>,
+                <&kp C>,
                 <&macro_tap>,
-                <&kp SPACE>;
+                <&kp RET>;
         };
     };
 
