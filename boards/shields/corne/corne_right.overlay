@@ -1,0 +1,35 @@
+/*
+ * Custom overlay for the Corne RIGHT half.
+ * Uses ZMK built-in status screen with LVGL widgets instead of the
+ * default nice!view vertical custom widget (which stays on the left half).
+ *
+ * Layout (160x68, rotated 90° CCW for the right half):
+ *   - Layer name (large, top-left)
+ *   - Locking (CAPS word indicator)
+ *   - Modifiers (Shift/Ctrl/Alt/Gui)
+ *   - WPM (right column)
+ *   - Output (USB/BLE icon)
+ *   - Battery (right column, top)
+ */
+
+#include <dt-bindings/zmk/display.h>
+#include <dt-bindings/zmk/widgets.h>
+
+/ {
+    status_screen: status_screen {
+        compatible = "zmk,lcd-status-screen";
+        screens = <&main_screen>;
+    };
+
+    main_screen: main_screen {
+        compatible = "zmk,status-screen";
+        content = <
+            &label_layer       2  2  ""
+            &label_locking     2 22  ""
+            &label_modifiers   2 42  ""
+            &label_battery   118  2  ""
+            &label_wpm       118 22  ""
+            &label_output    118 42  ""
+        >;
+    };
+};
