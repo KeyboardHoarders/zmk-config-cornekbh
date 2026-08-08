@@ -144,6 +144,30 @@
 
             label = "CTRL_V";
         };
+
+        cmd_c: cmd_c {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND &kp C>,
+                <&macro_release>,
+                <&kp LEFT_COMMAND &kp C>;
+
+            label = "CMD_C";
+        };
+
+        cmd_v: cmd_v {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND &kp V>,
+                <&macro_release>,
+                <&kp LEFT_COMMAND &kp V>;
+
+            label = "CMD_V";
+        };
     };
 
     combos {
@@ -161,61 +185,61 @@
 
         perc {
             bindings = <&kp PERCENT>;
-            key-positions = <5 17>;
+            key-positions = <5 4>;
             layers = <0>;
         };
 
         equal {
             bindings = <&kp EQUAL>;
-            key-positions = <28 16>;
+            key-positions = <18 19>;
             layers = <0>;
         };
 
         dollar {
             bindings = <&kp DOLLAR>;
-            key-positions = <4 16>;
+            key-positions = <4 3>;
             layers = <0>;
         };
 
         pound {
             bindings = <&kp POUND>;
-            key-positions = <3 15>;
+            key-positions = <16 17>;
             layers = <0>;
         };
 
         at {
             bindings = <&kp AT>;
-            key-positions = <2 14>;
+            key-positions = <2 3>;
             layers = <0>;
         };
 
         backslash {
             bindings = <&kp BACKSLASH>;
-            key-positions = <26 14>;
+            key-positions = <34 33>;
             layers = <0>;
         };
 
         star {
             bindings = <&kp STAR>;
-            key-positions = <8 20>;
+            key-positions = <8 9>;
             layers = <0>;
         };
 
         slash {
             bindings = <&kp SLASH>;
-            key-positions = <32 20>;
+            key-positions = <9 10>;
             layers = <0>;
         };
 
         plus {
             bindings = <&kp PLUS>;
-            key-positions = <7 19>;
+            key-positions = <7 6>;
             layers = <0>;
         };
 
         minus {
             bindings = <&kp KP_MINUS>;
-            key-positions = <31 19>;
+            key-positions = <7 8>;
             layers = <0>;
         };
 
@@ -249,14 +273,24 @@
             layers = <0>;
         };
 
-        ctrl-c {
-            bindings = <&ctrl_c>;
+        copy {
+            bindings = <&kp K_COPY>;
             key-positions = <26 27>;
         };
 
-        ctrl-v {
-            bindings = <&ctrl_v>;
+        paste {
+            bindings = <&kp K_PASTE>;
             key-positions = <27 28>;
+        };
+
+        til {
+            bindings = <&kp TILDE>;
+            key-positions = <22 21>;
+        };
+
+        cut {
+            bindings = <&kp K_CUT>;
+            key-positions = <25 26>;
         };
     };
 
