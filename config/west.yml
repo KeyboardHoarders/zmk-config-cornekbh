@@ -11,8 +11,7 @@ manifest:
       remote: zmkfirmware
       import: app/west.yml
     - name: zmk-helpers
-      remote: urob
-      url-base: https://github.com/urob
+      url: https://github.com/urob/zmk-helpers.git
       revision: main
       path: config/zmk-helpers
   self:
