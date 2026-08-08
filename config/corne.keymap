@@ -9,17 +9,6 @@
 #define ADJ 3
 #define EXTRA 4
 
-// Define `&kp euro_sign` that types the Euro sign (U+20AC) via the OS
-// Unicode-input sequence. Inlined (no urob/zmk-helpers include) so the
-// keymap editor (nickcoutsos/keymap-editor) can parse it without
-// preprocessor support.
-//
-// Linux (Ctrl+Shift+U then SPACE), Windows (WinCompose: RALT+U then RET),
-// macOS (Unicode Hex Input: hold LALT then type hex then release).
-// Edit OS_UNICODE_LEAD / OS_UNICODE_TRAIL below to retarget per OS.
-#define OS_UNICODE_LEAD  &macro_tap &kp LS(LC(U))
-#define OS_UNICODE_TRAIL &macro_tap &kp SPACE
-
 / {
     behaviors {
         hm: homerow_mods {
@@ -61,9 +50,13 @@
             mods = <(MOD_LSFT)>;
         };
 
-        // Euro sign: types U+20AC via OS_UNICODE_LEAD / OS_UNICODE_TRAIL.
-        // mod-morph (shifted yields `&none`) matches the original
-        // ZMK_UNICODE_SINGLE semantics from urob/zmk-helpers.
+        // Euro sign: types U+20AC via the Linux IBus sequence
+        // (Ctrl+Shift+U, then 20ac, then SPACE). mod-morph with `&none`
+        // on shift matches the original ZMK_UNICODE_SINGLE semantics.
+        // Edit the `euro_sign_lower` macro below to retarget per OS:
+        //   Linux:    &macro_tap &kp LS(LC(U))  ...  &macro_tap &kp SPACE
+        //   macOS:    &macro_press &kp LALT  ...  &macro_release &kp LALT
+        //   Win+:     &macro_tap &kp RALT &kp U  ...  &macro_tap &kp RET
         euro_sign: euro_sign {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -190,13 +183,14 @@
             label = "CMD_V";
         };
 
-        // Euro sign macro: types U+20AC via OS_UNICODE_LEAD / OS_UNICODE_TRAIL.
+        // Euro sign macro: types U+20AC via Linux IBus sequence.
+        // See euro_sign comment above for retargeting to macOS / Windows.
         euro_sign_lower: euro_sign_lower {
             compatible = "zmk,behavior-macro";
             wait-ms = <0>;
             tap-ms = <0>;
             #binding-cells = <0>;
-            bindings = <OS_UNICODE_LEAD>, <&macro_tap &kp N2 &kp N0 &kp A &kp C>, <OS_UNICODE_TRAIL>;
+            bindings = <&macro_tap &kp LS(LC(U))>, <&macro_tap &kp N2 &kp N0 &kp A &kp C>, <&macro_tap &kp SPACE>;
         };
     };
 
