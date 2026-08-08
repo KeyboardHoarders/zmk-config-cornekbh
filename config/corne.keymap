@@ -9,6 +9,16 @@
 #define ADJ 3
 #define EXTRA 4
 
+// zmk-helpers: input Unicode via OS-specific sequence.
+// 0 = Windows (Wincompose), 1 = Linux (Ctrl+Shift+U), 2 = macOS (Unicode Hex Input).
+// Customize further with OS_UNICODE_LEAD / OS_UNICODE_TRAIL if your OS uses a different combo.
+#define HOST_OS 1
+#include "zmk-helpers/helper.h"
+
+// Unicode characters exposed as &kp behaviors.
+// Euro sign (€) = U+20AC.
+ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)
+
 / {
     behaviors {
         hm: homerow_mods {
