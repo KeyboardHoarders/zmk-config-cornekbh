@@ -203,6 +203,32 @@
                 <&macro_release>,
                 <&kp LEFT_ALT &kp LEFT_SHIFT>;
         };
+
+        cmd_x: cmd_x {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND &kp X>,
+                <&macro_release>,
+                <&kp LEFT_COMMAND &kp X>;
+
+            label = "CMD_X";
+        };
+
+        a_til: a_til {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp TILDE &kp A>;
+            label = "A_TIL";
+        };
+
+        c_cedilha: c_cedilha {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SQT &kp C>;
+            label = "C_CEDILHA";
+        };
     };
 
     combos {
@@ -309,28 +335,38 @@
         };
 
         copy {
-            bindings = <&kp C_AC_COPY>;
+            bindings = <&cmd_c>;
             key-positions = <26 27>;
         };
 
         paste {
-            bindings = <&kp C_AC_PASTE>;
+            bindings = <&cmd_v>;
             key-positions = <27 28>;
         };
 
         til {
             bindings = <&kp TILDE>;
-            key-positions = <22 21>;
+            key-positions = <22 23>;
         };
 
         cut {
-            bindings = <&kp C_AC_CUT>;
+            bindings = <&cmd_x>;
             key-positions = <25 26>;
         };
 
         euro {
             bindings = <&euro_sign_lower>;
             key-positions = <15 27>;
+        };
+
+        a_til {
+            bindings = <&a_til>;
+            key-positions = <12 13>;
+        };
+
+        c_cedilha {
+            bindings = <&c_cedilha>;
+            key-positions = <24 27>;
         };
     };
 
