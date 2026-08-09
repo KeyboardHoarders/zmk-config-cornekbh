@@ -185,12 +185,10 @@
             label = "CMD_V";
         };
 
-        // Euro sign macro: types U+20AC via WinCompose on Windows.
-        // Press RALT+U, tap the hex digits, then send RET to commit.
-        // We use macro_press/macro_release explicitly (instead of macro_tap)
-        // so the RALT modifier is fully released BEFORE the digits are typed
-        // — otherwise the hex letters (a, c) get MS-Windows AltGr-shifted
-        // and the composer rejects the sequence.
+        // Euro sign macro: types U+20AC via macOS Unicode Hex Input.
+        // Requires: System Settings → Keyboard → Input Sources →
+        //           "Unicode Hex Input" added and active when pressing the combo.
+        // Sequence: hold LEFT_ALT, tap 2-0-A-C, release LEFT_ALT.
         euro_sign_lower: euro_sign_lower {
             compatible = "zmk,behavior-macro";
             wait-ms = <10>;
@@ -198,18 +196,14 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_press>,
-                <&kp RALT>,
-                <&macro_tap>,
-                <&kp U>,
-                <&macro_release>,
-                <&kp RALT>,
+                <&kp LEFT_ALT>,
                 <&macro_tap>,
                 <&kp N2>,
                 <&kp N0>,
                 <&kp A>,
                 <&kp C>,
-                <&macro_tap>,
-                <&kp RET>;
+                <&macro_release>,
+                <&kp LEFT_ALT>;
         };
     };
 
