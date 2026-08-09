@@ -189,6 +189,7 @@
         // Requires: System Settings → Keyboard → Input Sources →
         //           "Unicode Hex Input" added and active when pressing the combo.
         // Sequence: hold LEFT_ALT, tap 2-0-A-C, release LEFT_ALT.
+
         euro_sign_lower: euro_sign_lower {
             compatible = "zmk,behavior-macro";
             wait-ms = <10>;
@@ -196,14 +197,11 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_press>,
-                <&kp LEFT_ALT>,
+                <&kp LEFT_ALT &kp LEFT_SHIFT>,
                 <&macro_tap>,
                 <&kp N2>,
-                <&kp N0>,
-                <&kp A>,
-                <&kp C>,
                 <&macro_release>,
-                <&kp LEFT_ALT>;
+                <&kp LEFT_ALT &kp LEFT_SHIFT>;
         };
     };
 
@@ -222,31 +220,31 @@
 
         perc {
             bindings = <&kp PERCENT>;
-            key-positions = <5 4>;
+            key-positions = <4 16>;
             layers = <0>;
         };
 
         equal {
             bindings = <&kp EQUAL>;
-            key-positions = <18 19>;
+            key-positions = <18 6>;
             layers = <0>;
         };
 
         dollar {
             bindings = <&kp DOLLAR>;
-            key-positions = <4 3>;
+            key-positions = <3 15>;
             layers = <0>;
         };
 
         pound {
             bindings = <&kp POUND>;
-            key-positions = <16 17>;
+            key-positions = <17 5>;
             layers = <0>;
         };
 
         at {
             bindings = <&kp AT>;
-            key-positions = <2 3>;
+            key-positions = <2 14>;
             layers = <0>;
         };
 
@@ -258,25 +256,25 @@
 
         star {
             bindings = <&kp STAR>;
-            key-positions = <8 9>;
+            key-positions = <9 21>;
             layers = <0>;
         };
 
         slash {
             bindings = <&kp SLASH>;
-            key-positions = <9 10>;
+            key-positions = <10 22>;
             layers = <0>;
         };
 
         plus {
             bindings = <&kp PLUS>;
-            key-positions = <7 6>;
+            key-positions = <7 19>;
             layers = <0>;
         };
 
         minus {
             bindings = <&kp KP_MINUS>;
-            key-positions = <7 8>;
+            key-positions = <8 20>;
             layers = <0>;
         };
 
@@ -311,12 +309,12 @@
         };
 
         copy {
-            bindings = <&kp K_COPY>;
+            bindings = <&kp C_AC_COPY>;
             key-positions = <26 27>;
         };
 
         paste {
-            bindings = <&kp K_PASTE>;
+            bindings = <&kp C_AC_PASTE>;
             key-positions = <27 28>;
         };
 
@@ -326,13 +324,13 @@
         };
 
         cut {
-            bindings = <&kp K_CUT>;
+            bindings = <&kp C_AC_CUT>;
             key-positions = <25 26>;
         };
 
         euro {
-            bindings = <&euro_sign>;
-            key-positions = <15 16>;
+            bindings = <&euro_sign_lower>;
+            key-positions = <15 27>;
         };
     };
 
@@ -368,9 +366,9 @@
             // | GUI | CTRL | SHFT | LWR | SPC |   | ENT | RSE  | BKSP | ALT | ESC |
 
             bindings = <
-&trans      &kp N1  &kp N2    &kp N3        &kp N4           &kp N5           &kp N6   &kp N7  &kp N8  &kp N9  &kp N0    &trans
-&caps_word  &trans  &trans    &kp UP_ARROW  &browsertab      &kp PAGE_UP      &kp N0   &kp N4  &kp N5  &kp N6  &trans    &trans
-&mo 6       &mo 5   &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp PAGE_DOWN    &mo 7    &kp N1  &kp N2  &kp N3  &kp HOME  &kp END
+&trans      &kp N1  &kp N2    &kp N3        &kp N4           &kp N5           &kp N6   &kp N7  &kp N8  &kp N9  &kp N0         &trans
+&caps_word  &trans  &trans    &kp UP_ARROW  &browsertab      &kp PAGE_UP      &kp N0   &kp N4  &kp N5  &kp N6  &kp LESS_THAN  &kp GREATER_THAN
+&mo 6       &mo 5   &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp PAGE_DOWN    &mo 7    &kp N1  &kp N2  &kp N3  &kp HOME       &kp END
                               &kp LGUI      &trans           &kp SPACE        &kp RET  &mo 3   &trans
             >;
         };
