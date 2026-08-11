@@ -65,6 +65,30 @@
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        shift_caps: shift_caps {
+            compatible = "zmk,behavior-tap-dance";
+            label = "SHIFT_CAPS";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_SHIFT>, <&caps_word>;
+        };
+
+        print: print {
+            compatible = "zmk,behavior-tap-dance";
+            label = "PRINT";
+            #binding-cells = <0>;
+            bindings =
+                <&kp LS(LG(LC(NUMBER_4)))>,
+                <&kp LS(LG(NUMBER_4))>,
+                <&kp LS(LG(N5))>;
+        };
+
+        mouse_adj_layer: mouse_adj_layer {
+            compatible = "zmk,behavior-tap-dance";
+            label = "MOUSE_ADJ_LAYER";
+            #binding-cells = <0>;
+            bindings = <&mo 6>, <&mo 5>;
+        };
     };
 
     macros {
@@ -335,12 +359,12 @@
         };
 
         copy {
-            bindings = <&cmd_c>;
+            bindings = <&kp LG(C)>;
             key-positions = <26 27>;
         };
 
         paste {
-            bindings = <&cmd_v>;
+            bindings = <&kp LG(V)>;
             key-positions = <27 28>;
         };
 
@@ -350,12 +374,12 @@
         };
 
         cut {
-            bindings = <&cmd_x>;
+            bindings = <&kp LG(X)>;
             key-positions = <25 26>;
         };
 
         euro {
-            bindings = <&euro_sign_lower>;
+            bindings = <&kp LA(LS(N2))>;
             key-positions = <15 27>;
         };
 
@@ -385,10 +409,10 @@
             // | GUI | CTRL | SHFT | LWR | SPC |   | ENT | RSE  | BKSP | ALT | ESC |
 
             bindings = <
-&kp TAB    &kp Q               &kp W           &kp E               &kp R  &kp T        &kp Y      &kp U      &kp I                &kp O            &kp P                   &kp BACKSPACE
-&kp LSHFT  &hm LEFT_CONTROL A  &hm LEFT_ALT S  &hm LEFT_COMMAND D  &kp F  &kp G        &kp H      &kp J      &hm RIGHT_COMMAND K  &hm RIGHT_ALT L  &hm RIGHT_CONTROL SEMI  &kp SQT
-&kp LCTRL  &kp Z               &kp X           &kp C               &kp V  &kp B        &kp N      &kp M      &kp COMMA            &kp DOT          &kp FSLH                &kp RET
-                                               &kp LGUI            &mo 1  &kp SPACE    &kp SPACE  &lt 2 TAB  &kp LEFT_ALT
+&kp TAB      &kp Q               &kp W           &kp E               &kp R  &kp T        &kp Y      &kp U      &kp I                &kp O            &kp P                   &kp BACKSPACE
+&shift_caps  &hm LEFT_CONTROL A  &hm LEFT_ALT S  &hm LEFT_COMMAND D  &kp F  &kp G        &kp H      &kp J      &hm RIGHT_COMMAND K  &hm RIGHT_ALT L  &hm RIGHT_CONTROL SEMI  &kp SQT
+&kp LCTRL    &kp Z               &kp X           &kp C               &kp V  &kp B        &kp N      &kp M      &kp COMMA            &kp DOT          &kp FSLH                &kp RET
+                                                 &mo 7               &mo 1  &kp SPACE    &kp SPACE  &lt 4 TAB  &mouse_adj_layer
             >;
         };
 
@@ -402,11 +426,33 @@
             // | GUI | CTRL | SHFT | LWR | SPC |   | ENT | RSE  | BKSP | ALT | ESC |
 
             bindings = <
-&trans      &trans  &trans    &trans        &trans           &trans           &trans      &hm AMPERSAND N7          &hm ASTERISK N8  &hm LEFT_PARENTHESIS N9  &hm RIGHT_PARENTHESIS N0  &trans
-&caps_word  &trans  &trans    &kp UP_ARROW  &browsertab      &kp PAGE_UP      &kp N0      &hm DOLLAR N4             &hm PERCENT N5   &hm CARET N6             &trans                    &trans
-&trans      &trans  &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp PAGE_DOWN    &kp PERIOD  &hm EXCLAMATION NUMBER_1  &hm AT N2        &hm HASH N3              &trans                    &trans
-                              &kp LGUI      &trans           &kp SPACE        &kp RET     &mo 3                     &trans
+&trans      &trans  &trans    &trans        &trans           &trans       &trans      &hm AMPERSAND N7          &hm ASTERISK N8  &hm LEFT_PARENTHESIS N9  &hm RIGHT_PARENTHESIS N0  &trans
+&caps_word  &trans  &trans    &kp UP_ARROW  &browsertab      &mo 3        &kp N0      &hm DOLLAR N4             &hm PERCENT N5   &hm CARET N6             &trans                    &kp PAGE_UP
+&trans      &trans  &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &mo 2        &kp PERIOD  &hm EXCLAMATION NUMBER_1  &hm AT N2        &hm HASH N3              &trans                    &kp PAGE_DOWN
+                              &kp LGUI      &trans           &kp SPACE    &kp SPACE   &kp LG(LEFT_ARROW)        &kp LG(RIGHT)
             >;
+        };
+
+        FNKEY {
+            bindings = <
+&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6    &kp F7  &kp F8                  &kp F9                   &kp F10  &kp F11  &kp F12
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                  &trans                   &trans   &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                  &trans                   &trans   &trans   &trans
+                        &trans  &trans  &trans    &trans  &kp LS(LA(LEFT_ARROW))  &kp LS(LA(RIGHT_ARROW))
+            >;
+
+            label = "FnKeys";
+        };
+
+        FK_UPPER {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                  &trans                   &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                  &trans                   &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                  &trans                   &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &kp LS(LG(LEFT_ARROW))  &kp LS(LG(RIGHT_ARROW))
+            >;
+
+            label = "FuncUpper";
         };
 
         SYM {
@@ -422,7 +468,7 @@
 &trans  &kp EXCL  &kp AT          &kp HASH        &kp DLLR         &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK  &kp LEFT_PARENTHESIS  &kp RPAR  &trans
 &trans  &trans    &trans          &kp UP_ARROW    &trans           &kp GRAVE    &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT              &kp BSLH  &trans
 &trans  &trans    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp TILDE    &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC              &kp PIPE  &trans
-                                  &kp LGUI        &mo 3            &kp SPACE    &kp RET    &trans     &trans
+                                  &kp LGUI        &mo 5            &kp SPACE    &kp RET    &trans     &trans
             >;
         };
 
@@ -446,23 +492,12 @@
             >;
         };
 
-        FNKEY {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &kp F9  &kp F10  &kp F11  &kp F12  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &kp F5  &kp F6   &kp F7   &kp F8   &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &kp F1  &kp F2   &kp F3   &kp F4   &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans   &trans
-            >;
-
-            label = "FnKeys";
-        };
-
         MED {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp C_VOLUME_DOWN        &kp C_MUTE  &kp C_VOL_UP       &kp C_BRI_DN  &kp C_BRI_UP
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &hm C_REWIND C_PREVIOUS  &kp C_PP    &hm C_FF C_NEXT    &trans        &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp C_PREVIOUS           &trans      &kp LS(K_FORWARD)  &trans        &trans
-                        &trans  &trans  &trans    &trans  &trans                   &trans
+&mo 8   &trans  &trans  &trans  &trans  &trans    &trans    &kp C_VOLUME_DOWN  &kp C_MUTE  &kp C_VOL_UP  &kp C_BRI_DN  &kp C_BRI_UP
+&trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans             &trans      &trans        &trans        &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans             &trans      &trans        &trans        &trans
+                        &trans  &trans  &trans    &kp C_PP  &kp C_PREV         &kp C_NEXT
             >;
 
             label = "Media";
@@ -470,9 +505,9 @@
 
         MAC {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &seq_1  &seq_2  &seq_3  &trans  &rec_mac  &print_mac
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans    &lock_mac
+&trans  &trans  &trans  &trans  &trans  &trans    &seq_1  &seq_2  &seq_3  &trans  &trans  &print
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &lock_mac
                         &trans  &trans  &trans    &trans  &trans  &trans
             >;
 
